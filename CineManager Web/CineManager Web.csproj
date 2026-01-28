@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>CineManager_Web</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Models\NewFile.txt" />
+    <None Remove="Views\Cinema\NewFile.txt" />
+    <None Remove="Views\Home\NewFile.txt" />
+  </ItemGroup>
+
+</Project>
