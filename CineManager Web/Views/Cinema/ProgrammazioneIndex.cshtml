@@ -1,0 +1,84 @@
+﻿@model List<CineManagerWeb.Models.Sala>
+
+
+@{
+    ViewData["Title"] = "Programmazione Sale Admin";
+}
+
+<div class="container py-5">
+
+    <h2 class="mt-4">Sale Cinema Disponibili (Admin)</h2>
+
+    <table class="table table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Film</th>
+                <th>Numero Sala</th>
+                <th>Disponibilità</th>
+                <th>Totale posti</th>
+                <th>Posti Occupati</th>
+                <th>Prenota</th>
+                <th>Disdici</th>
+                <td>Aumenta posti totali</td>
+                <td>Diminuisci posti totali</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var d in Model)
+            {
+                <tr>
+                    <td>@d.Film</td>
+                    <td>Sala @d.NumeroSala</td>
+                    <td>@d.PostiLiberi posti</td>
+                    <td>@d.TotalePosti posti totali</td>
+                    <td>@d.PostiOccupati posti occupati</td>
+                    
+                    <td>
+                        @if (d.PostiLiberi > 0)
+                        {
+                            <a href="/Cinema/PrenotaAdmin?id=@d.Id" class="btn btn-primary">Prenota 1 Posto</a>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Esaurito</span>
+                        }
+                    </td>
+                    <td>
+                        @if (d.PostiOccupati > 0)
+                        {
+                            <a href="/Cinema/Disdici?id=@d.Id" class="btn btn-primary">Disdici 1 Posto</a>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Nessuno ha prenotato</span>
+                        }
+                    </td>
+                    <td>   
+                        @if(d.TotalePosti > 1)
+                        {
+                            <a href="/Cinema/DiminuisciPostiTot?id=@d.Id" class="btn btn-primary">Diminuisci posti tot</a>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Raggiunto minimo di posti</span>
+                        }
+                    </td>
+                    <td>
+                        @if (d.TotalePosti < 50)
+                        {
+                            <a href="/Cinema/AumentaPostiTot?id=@d.Id" class="btn btn-primary">Aumenta posti tot</a>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Raggiunta massima capienza della sala</span>
+                        }
+                    </td>
+                    <td>
+
+                    </td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>

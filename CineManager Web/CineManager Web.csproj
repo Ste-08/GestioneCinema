@@ -10,7 +10,6 @@
   <ItemGroup>
     <None Remove="Models\NewFile.txt" />
     <None Remove="Views\Cinema\NewFile.txt" />
-    <None Remove="Views\Home\NewFile.txt" />
   </ItemGroup>
 
 </Project>

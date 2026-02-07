@@ -5,119 +5,43 @@
     ViewData["Title"] = "Programmazione Sale";
 }
 
-<style>
-    /* Stili per le card (uguali a prima) */
-    .movie-card {
-        background-color: #1f1f1f;
-        border: none;
-        border-radius: 8px;
-        overflow: hidden;
-        margin-bottom: 20px;
-        color: white;
-        transition: transform 0.3s;
-    }
-    .movie-card:hover { transform: translateY(-5px); }
-    .card-body { padding: 1.5rem; }
-    .movie-title { font-weight: 700; color: white; }
-    .movie-info { color: #b3b3b3; font-size: 0.9rem; margin-bottom: 15px; }
-    
-    /* Indicatore Posti */
-    .seats-badge {
-        background-color: #e50914; /* Rosso */
-        padding: 5px 10px;
-        border-radius: 4px;
-        font-size: 0.8rem;
-        font-weight: bold;
-    }
-    .seats-low { background-color: #ffa500; color: black; } /* Arancione se pochi posti */
-    .seats-empty { background-color: #555; } /* Grigio se esaurito */
-</style>
-
 <div class="container py-5">
-    <h2 class="text-white mb-4" style="border-left: 5px solid #e50914; padding-left: 15px;">
-        Film in Programmazione
-    </h2>
+   
+    <h2 class="mt-4">Sale Cinema Disponibili</h2>
 
-    <div class="row">
-        @foreach (var sala in Model)
-        {
-            <div class="col-md-6 col-lg-4">
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/400x200/333/fff?text=@sala.Film" class="w-100" alt="Locandina" style="height: 200px; object-fit: cover;">
-                    
-                    <div class="card-body">
-                        <h5 class="movie-title">@sala.Film</h5>
-                        
-                        <div class="movie-info">
-                            <i class="fas fa-video me-2"></i>Sala @sala.NumeroSala
-                        </div>
+    <table class="table table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Film</th>
+                <th>Numero Sala</th>
+                <th>Disponibilità</th>
+                <th>Totale posti</th>
+                <th>Posti Occupati</th>
+                <th>Azione</th>
 
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span>Disponibilità:</span>
-                            @if (sala.PostiLiberi == 0)
-                            {
-                                <span class="seats-badge seats-empty">SOLD OUT</span>
-                            }
-                            else if (sala.PostiLiberi < 5)
-                            {
-                                <span class="seats-badge seats-low">Ultimi @sala.PostiLiberi posti!</span>
-                            }
-                            else
-                            {
-                                <span class="seats-badge">@sala.PostiLiberi / @sala.TotalePosti liberi</span>
-                            }
-                        </div>
-
-                        @if (sala.PostiLiberi > 0)
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@s.Film</td>
+                    <td>Sala @s.NumeroSala</td>
+                    <td>@s.PostiLiberi posti</td>
+                    <td>@s.TotalePosti posti totali</td>
+                    <td>@s.PostiOccupati posti occupati</td>
+                    <td>
+                        @if (s.PostiLiberi > 0)
                         {
-                            <a asp-controller="Cinema" asp-action="Prenota" asp-route-id="@sala.Id" class="btn btn-danger w-100">
-                                <i class="fas fa-ticket-alt me-2"></i>Prenota Posto
-                            </a>
+                            <a href="/Cinema/Prenota?id=@s.Id" class="btn btn-primary">Prenota 1 Posto</a>
                         }
                         else
                         {
-                            <button class="btn btn-secondary w-100" disabled>Esaurito</button>
-                        }
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-</div>
-<h2 class="mt-4">Sale Cinema Disponibili</h2>
+                            <span class="badge bg-danger">Esaurito</span>
 
-<table class="table table-striped mt-3">
-    <thead class="table-dark">
-        <tr>
-            <th>Film</th>
-            <th>Numero Sala</th>
-            <th>Disponibilità</th>
-            <th>Totale posti</th>
-            <th>Posti Occupati</th>
-            <th>Azione</th>
-            
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var s in Model)
-        {
-            <tr>
-                <td>@s.Film</td>
-                <td>Sala @s.NumeroSala</td>
-                <td>@s.PostiLiberi posti</td>
-                <td>@s.TotalePosti posti totali</td>
-                <td>@s.PostiOccupati posti occupati</td>
-                <td>
-                    @if (s.PostiLiberi > 0)
-                    {
-                        <a href="/Cinema/Prenota?id=@s.Id" class="btn btn-primary">Prenota 1 Posto</a>
-                    }
-                    else
-                    {
-                        <span class="badge bg-danger">Esaurito</span>
-                    }
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

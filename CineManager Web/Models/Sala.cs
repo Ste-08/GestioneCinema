@@ -3,6 +3,7 @@
     public class Sala
     {
         public int Id { get; set; }
+       
         public string Film { get; set; }
         public int PostiLiberi { get; set; }
 
@@ -19,9 +20,20 @@
         {
             if (PostiLiberi > 0) PostiLiberi--;
         }
+        public void LiberaPosti()
+        {
+            PostiLiberi++;
+        }
 
- 
-
-       
-   }
+        public void DiminuisciMax()
+        {
+            if(TotalePosti > PostiOccupati) TotalePosti --;
+            PostiLiberi--;
+        }
+        public void AumentaMax()
+        {
+            TotalePosti++;
+            PostiLiberi++;
+        }
+    }
 }
