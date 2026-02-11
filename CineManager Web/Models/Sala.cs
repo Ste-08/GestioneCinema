@@ -41,14 +41,5 @@
             TotalePosti++;
             PostiLiberi++;
         }
-
-        
-/*
-        public override string ToString() 
-        {
-            return 
-        }*/
-
-
     }
 }

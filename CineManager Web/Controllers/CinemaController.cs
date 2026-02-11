@@ -141,20 +141,21 @@ namespace CineManager_Web.Controllers
 
         public override string ToString() 
         {
-            s.id 
+             
             return $"Sala1 {""}";
         }
 
-        public void Salva()
+        public IActionResult Salva()
         {
             using (StreamWriter sw = new StreamWriter("sale.txt", true))
             {
-                foreach ( int i in _sale)
+                foreach ( Sala s in _sale)
                 {
-                    sw.WriteLine($"Sala1: {_sale[0].Incassi}");
+                    sw.WriteLine($"Sala{s.Id}: {_sale[s.Id-1].Incassi} alle {DateAndTime.Now}");
                 }
                 
             }
+            return RedirectToAction("ProgrammazioneIndex");
         }
 
         // --- GESTIONE ERRORI ---
