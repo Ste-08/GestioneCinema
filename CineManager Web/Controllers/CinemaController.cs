@@ -13,13 +13,13 @@ namespace CineManager_Web.Controllers
         // Database "Finto": Usiamo una lista statica per far sì che i dati 
         // rimangano in memoria finché l'applicazione è in esecuzione.
         private static List<Sala> _sale = new List<Sala> {
-            new Sala { Id = 1, Film = "Il Glossario", PostiLiberi = 20, TotalePosti = 20, NumeroSala = 1},
-            new Sala { Id = 2, Film = "C# Revenge", PostiLiberi = 5, TotalePosti = 5, NumeroSala = 2}
+            new Sala { Id = 1, Film = "Il Glossario", PostiLiberi = 20, TotalePosti = 20, NumeroSala = 1, PrezzoBiglietto = 9},
+            new Sala { Id = 2, Film = "C# Revenge", PostiLiberi = 5, TotalePosti = 5, NumeroSala = 2, PrezzoBiglietto = 12 }
         };
 
         // Logger per registrare eventi o errori (generato di default da VS)
         private readonly ILogger<CinemaController> _logger;
-
+        
         public CinemaController(ILogger<CinemaController> logger)
         {
             _logger = logger;
@@ -136,6 +136,24 @@ namespace CineManager_Web.Controllers
                 // Se i dati sono errati, crea un messaggio di errore e ricarica la pagina di login
                 ViewBag.Errore = "Email o Password non validi!";
                 return View();
+            }
+        }
+
+        public override string ToString() 
+        {
+            s.id 
+            return $"Sala1 {""}";
+        }
+
+        public void Salva()
+        {
+            using (StreamWriter sw = new StreamWriter("sale.txt", true))
+            {
+                foreach ( int i in _sale)
+                {
+                    sw.WriteLine($"Sala1: {_sale[0].Incassi}");
+                }
+                
             }
         }
 

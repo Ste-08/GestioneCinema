@@ -21,7 +21,7 @@
                 <th>Disdici</th>
                 <td>Aumenta posti totali</td>
                 <td>Diminuisci posti totali</td>
-
+                <td>Totale Incassi</td>
             </tr>
         </thead>
         <tbody>
@@ -33,7 +33,7 @@
                     <td>@d.PostiLiberi posti</td>
                     <td>@d.TotalePosti posti totali</td>
                     <td>@d.PostiOccupati posti occupati</td>
-                    
+
                     <td>
                         @if (d.PostiLiberi > 0)
                         {
@@ -74,11 +74,13 @@
                             <span class="badge bg-danger">Raggiunta massima capienza della sala</span>
                         }
                     </td>
-                    <td>
-
-                    </td>
+                    <td>@d.Incassi €  </td>
                     
                 </tr>
             }
         </tbody>
     </table>
+</div>
+<div>
+    <a href="/Cinema/ToString" class="btn btn-primary">Salva</a>
+</div>
