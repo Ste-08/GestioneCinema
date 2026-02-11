@@ -37,7 +37,11 @@
                     <td>
                         @if (d.PostiLiberi > 0)
                         {
-                            <a href="/Cinema/PrenotaAdmin?id=@d.Id" class="btn btn-primary">Prenota 1 Posto</a>
+                            <a href="/Cinema/PrenotaAdmin?id=@d.Id"
+                               class="btn btn-primary"
+                               onclick="@(d.PostiLiberi < 3 ? "alert('Attenzione: Sala quasi piena! Rimangono meno di 3 posti.');" : "")">
+                                Prenota 1 Posto
+                            </a>
                         }
                         else
                         {
@@ -54,8 +58,8 @@
                             <span class="badge bg-danger">Nessuno ha prenotato</span>
                         }
                     </td>
-                    <td>   
-                        @if(d.TotalePosti > 1)
+                    <td>
+                        @if (d.TotalePosti > 1)
                         {
                             <a href="/Cinema/DiminuisciPostiTot?id=@d.Id" class="btn btn-primary">Diminuisci posti tot</a>
                         }
@@ -75,12 +79,13 @@
                         }
                     </td>
                     <td>@d.Incassi €  </td>
-                    
+
                 </tr>
             }
         </tbody>
     </table>
 </div>
 <div>
-    <a href="/Cinema/Salva" class="btn btn-primary"onclick="alert('Informazioni salvate su sale.txt')"  >Salva</a>
+    <a href="/Cinema/Salva" class="btn btn-primary" onclick="alert('Informazioni salvate su sale.txt')">Salva</a>
+    <a href="/Cinema/Reset" class="btn btn-primary" onclick="alert('Reset avvenuto con successo!')">Reset</a>
 </div>

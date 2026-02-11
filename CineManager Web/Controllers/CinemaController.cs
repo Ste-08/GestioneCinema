@@ -10,12 +10,15 @@ namespace CineManager_Web.Controllers
     // Il Controller gestisce le interazioni tra l'utente (Vista) e i dati (Modello)
     public class CinemaController : Controller
     {
-        // Database "Finto": Usiamo una lista statica per far sì che i dati 
-        // rimangano in memoria finché l'applicazione è in esecuzione.
+        private static int _totalePostiInizialeSala1 = 20;
+        private static int _totalePostiInizialeSala2 = 5;
+
         private static List<Sala> _sale = new List<Sala> {
-            new Sala { Id = 1, Film = "Il Glossario", PostiLiberi = 20, TotalePosti = 20, NumeroSala = 1, PrezzoBiglietto = 9},
-            new Sala { Id = 2, Film = "C# Revenge", PostiLiberi = 5, TotalePosti = 5, NumeroSala = 2, PrezzoBiglietto = 12 }
+            new Sala { Id = 1, Film = "Il Glossario", PostiLiberi = _totalePostiInizialeSala1, TotalePosti = _totalePostiInizialeSala1, NumeroSala = 1, PrezzoBiglietto = 9},
+            new Sala { Id = 2, Film = "C# Revenge", PostiLiberi = _totalePostiInizialeSala2, TotalePosti = _totalePostiInizialeSala2, NumeroSala = 2, PrezzoBiglietto = 12 }
         };
+        
+        
 
         // Logger per registrare eventi o errori (generato di default da VS)
         private readonly ILogger<CinemaController> _logger;
@@ -143,6 +146,16 @@ namespace CineManager_Web.Controllers
         {
              
             return $"Sala1 {""}";
+        }
+
+        public IActionResult Reset()
+        {
+            _sale[0].TotalePosti = _totalePostiInizialeSala1;
+            _sale[1].TotalePosti = _totalePostiInizialeSala2;
+            _sale[0].PostiLiberi = _totalePostiInizialeSala1;
+            _sale[1].PostiLiberi = _totalePostiInizialeSala2;
+
+            return RedirectToAction("ProgrammazioneIndex");
         }
 
         public IActionResult Salva()

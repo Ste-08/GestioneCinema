@@ -35,12 +35,15 @@
                     <td>
                         @if (s.PostiLiberi > 0)
                         {
-                            <a href="/Cinema/Prenota?id=@s.Id" class="btn btn-primary">Prenota 1 Posto</a>
+                            <a href="/Cinema/Prenota?id=@s.Id"
+                               class="btn btn-primary"
+                               onclick="@(s.PostiLiberi < 3 ? "alert('Attenzione: Sala quasi piena! Rimangono meno di 3 posti.');" : "")">
+                                Prenota 1 Posto
+                            </a>
                         }
                         else
                         {
                             <span class="badge bg-danger">Esaurito</span>
-
                         }
                     </td>
                     <td>@s.PrezzoBiglietto €</td>
