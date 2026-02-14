@@ -154,6 +154,8 @@ namespace CineManager_Web.Controllers
             _sale[1].TotalePosti = _totalePostiInizialeSala2;
             _sale[0].PostiLiberi = _totalePostiInizialeSala1;
             _sale[1].PostiLiberi = _totalePostiInizialeSala2;
+            _sale[0].Incassi = 0;
+            _sale[1].Incassi = 0;
 
             return RedirectToAction("ProgrammazioneIndex");
         }
@@ -164,7 +166,7 @@ namespace CineManager_Web.Controllers
             {
                 foreach ( Sala s in _sale)
                 {
-                    sw.WriteLine($"Sala{s.Id}: {_sale[s.Id-1].Incassi} alle {DateAndTime.Now}");
+                    sw.WriteLine($"Sala{s.Id}: {_sale[s.Id-1].Incassi}€ alle {DateAndTime.Now}");
                 }
                 
             }
