@@ -39,7 +39,7 @@
                         {
                             <a href="/Cinema/PrenotaAdmin?id=@d.Id"
                                class="btn btn-primary"
-                               onclick="@(d.PostiLiberi < 3 ? "alert('Attenzione: Sala quasi piena! Rimangono meno di 3 posti.');" : "")">
+                               onclick="@(d.PostiLiberi <= 3 ? "alert('Attenzione: Sala quasi piena! Rimangono meno di 3 posti.');" : "")">
                                 Prenota 1 Posto
                             </a>
                         }
