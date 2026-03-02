@@ -15,7 +15,7 @@ namespace CineManager_Web.Controllers
 
         private static List<Sala> _sale = new List<Sala> {
             new Sala { Id = 1, Film = "Il Glossario", PostiLiberi = _totalePostiInizialeSala1, TotalePosti = _totalePostiInizialeSala1, NumeroSala = 1, PrezzoBiglietto = 9},
-            new Sala { Id = 2, Film = "C# Revenge", PostiLiberi = _totalePostiInizialeSala2, TotalePosti = _totalePostiInizialeSala2, NumeroSala = 2, PrezzoBiglietto = 12 }
+            new Sala { Id = 2, Film = "C# Revenge", PostiLiberi = _totalePostiInizialeSala2, TotalePosti = _totalePostiInizialeSala2, NumeroSala = 2, PrezzoBiglietto = 9 }
         };
         
         
@@ -166,7 +166,7 @@ namespace CineManager_Web.Controllers
             {
                 foreach ( Sala s in _sale)
                 {
-                    sw.WriteLine($"Sala{s.Id}: {_sale[s.Id-1].Incassi}€ alle {DateAndTime.Now}");
+                    sw.WriteLine($"Sala{s.Id}: {_sale[s.Id-1].Incassi}€ il {DateAndTime.Now}");
                 }
                 
             }
@@ -179,6 +179,12 @@ namespace CineManager_Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Omaggio()
+        {
+
+            return RedirectToAction("Index");
         }
     }
 }
