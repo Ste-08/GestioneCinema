@@ -6,7 +6,7 @@
 }
 
 <div class="container py-5">
-   
+
     <h2 class="mt-4">Sale Cinema Disponibili</h2>
 
     <table class="table table-striped mt-3" align="left">
@@ -19,6 +19,8 @@
                 <th>Posti Occupati</th>
                 <th>Azione</th>
                 <th>Prezzo</th>
+                <th>Omaggi disponibili</th>
+                <th>Usa omaggi</th>
                 <th>Totale acquisto</th>
 
             </tr>
@@ -47,6 +49,13 @@
                         }
                     </td>
                     <td>@s.PrezzoBiglietto €</td>
+                    <td>@s.Omaggi</td>
+                    <td>
+                        @if (s.Omaggi > 0)
+                        {
+                            <a href="/Cinema/PrendiOmaggio?id=@s.Id" class="btn btn-success">Usa 1 Omaggio</a>
+                        }
+                    </td>
                     <td>@s.Incassi €</td>
                 </tr>
             }

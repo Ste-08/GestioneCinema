@@ -14,12 +14,10 @@ namespace CineManager_Web.Controllers
         private static int _totalePostiInizialeSala2 = 5;
 
         private static List<Sala> _sale = new List<Sala> {
-            new Sala { Id = 1, Film = "Il Glossario", PostiLiberi = _totalePostiInizialeSala1, TotalePosti = _totalePostiInizialeSala1, NumeroSala = 1, PrezzoBiglietto = 9},
-            new Sala { Id = 2, Film = "C# Revenge", PostiLiberi = _totalePostiInizialeSala2, TotalePosti = _totalePostiInizialeSala2, NumeroSala = 2, PrezzoBiglietto = 9 }
+            new Sala { Id = 1, Film = "Il Glossario", PostiLiberi = _totalePostiInizialeSala1, TotalePosti = _totalePostiInizialeSala1, NumeroSala = 1,Omaggi = 5, PrezzoBiglietto = 9},
+            new Sala { Id = 2, Film = "C# Revenge", PostiLiberi = _totalePostiInizialeSala2, TotalePosti = _totalePostiInizialeSala2, NumeroSala = 2, Omaggi = 5, PrezzoBiglietto = 9 }
         };
         
-        
-
         // Logger per registrare eventi o errori (generato di default da VS)
         private readonly ILogger<CinemaController> _logger;
         
@@ -88,7 +86,15 @@ namespace CineManager_Web.Controllers
             return RedirectToAction("ProgrammazioneIndex");
         }
 
-
+        public IActionResult PrendiOmaggio(int id)
+        {
+            var sala = _sale.Find(s => s.Id == id);
+            if (sala != null && sala.Omaggi > 0)
+            {
+                sala.DiminuisciOmaggi();
+            }
+            return RedirectToAction("Index");
+        }
         public IActionResult DiminuisciPostiTot(int id)
         {
             var sala = _sale.Find(s => s.Id == id);
@@ -156,6 +162,8 @@ namespace CineManager_Web.Controllers
             _sale[1].PostiLiberi = _totalePostiInizialeSala2;
             _sale[0].Incassi = 0;
             _sale[1].Incassi = 0;
+            _sale[0].Omaggi = 5;
+            _sale[1].Omaggi = 5;
 
             return RedirectToAction("ProgrammazioneIndex");
         }
